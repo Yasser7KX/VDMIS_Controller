@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RemoteCMD</string>
+
+    <string name="action_connect">Connect</string>
+</resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <EditText
+        android:id="@+id/command_input"
+        android:hint="Input command"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:text="Send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/command_input"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_shutdown"
+        android:text="Shutdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_send"
+        android:layout_toLeftOf="@+id/btn_reboot" />
+
+    <Button
+        android:id="@+id/btn_reboot"
+        android:text="Reboot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_send"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:id="@+id/chkbox_linux"
+        android:text="Linux Server"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_reboot"
+        android:layout_toRightOf="@+id/btn_reboot"
+        android:layout_toEndOf="@+id/btn_reboot" />
+
+    <EditText
+        android:hint="The output will be shown here."
+        android:id="@+id/command_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btn_shutdown" />
+</RelativeLayout>
