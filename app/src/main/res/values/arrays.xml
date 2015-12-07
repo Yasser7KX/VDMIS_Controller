@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="command_shutdown_os_array" translatable="false">
+        <item>Windows</item>
+        <item>Linux</item>
+        <item>OS X</item>
+    </string-array>
+
+</resources>

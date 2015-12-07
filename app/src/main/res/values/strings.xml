@@ -1,5 +1,51 @@
 <resources>
-    <string name="app_name">RemoteCMD</string>
+    <string name="drawer_input">Input Directly</string>
+    <string name="drawer_shutdown">Shutdown/Restart</string>
+    <string name="drawer_schedule">Schedule</string>
+    <string name="drawer_chat">Chatting</string>
+    
+    <string name="app_name" translatable="false">RemoteCMD</string>
+    <string name="main_address_hint">Input Address</string>
+    <string name="main_password_hint">Input Password</string>
+    <string name="main_connect">Connect</string>
+    <string name="err_msg_unknown_host">Unknow Host</string>
+    <string name="err_msg_io_err">I/O error</string>
+    <string name="main_no_address">Please input address!</string>
+    <string name="main_connecting">Connecting...</string>
+    <string name="err_msg_timed_out">Connection timed out</string>
+    <string name="main_connected">Connected</string>
 
-    <string name="action_connect">Connect</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="err_msg_data_stream">Data stream error</string>
+    <string name="main_login_ok">Login OK</string>
+    <string name="main_disconnected">Disconnected</string>
+    <string name="main_login">Login</string>
+    <string name="command_disconnect">Disconnect connection</string>
+    <string name="command_input_send">Send</string>
+    <string name="command_input_hint">Input the command</string>
+    <string name="command_output_hint">Execution result will be shown here</string>
+    <string name="command_input_noinput">No input! Input the command.</string>
+    <string name="command_input_success">Command success</string>
+    <string name="command_sending">Sending command...</string>
+    <string name="command_timed_out">Timed out. Please go back to main.</string>
+
+    <string name="command_shutdown_select_os">Select OS</string>
+    <string name="command_shutdown_immediately">Immediately</string>
+    <string name="command_shutdown_input_directly">Input directly</string>
+    <string name="command_shutdown_hour">Hour</string>
+    <string name="command_shutdown_min">Min</string>
+    <string name="command_shutdown_sec">Sec</string>
+    <string name="command_shutdown_shutdown">Shutdown</string>
+    <string name="command_shutdown_restart">Restart</string>
+    <string name="command_shutdown_cancel">Cancel</string>
+    <string name="command_shutdown_dialog_title">Warning</string>
+    <string name="command_shutdown_dialog_msg">In Linux and OS X, second will be ignored.</string>
+    <string name="command_shutdown_dislog_ok">OK</string>
+    <string name="chatting_main_msg_hint">Input message</string>
+    <string name="chatting_main_io_err">Can\'t connect to chatting server.</string>
+    <string name="chatting_main_disconnected">Disconnected</string>
+    <string name="command_io_error">I/O error. Please go back to main.</string>
+    <string name="chatting_login_hint">Input chat name.</string>
 </resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <Spinner
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:prompt="@string/command_shutdown_select_os"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"/>
+
+    <RadioGroup
+        android:id="@+id/rb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp">
+
+        <RadioButton
+            android:id="@+id/rb_immediately"
+            android:text="@string/command_shutdown_immediately"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_directly"
+            android:text="@string/command_shutdown_input_directly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_hour"
+            android:hint="@string/command_shutdown_hour"
+            android:inputType="number"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/et_min"
+            android:hint="@string/command_shutdown_min"
+            android:inputType="number"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <EditText
+            android:id="@+id/et_sec"
+            android:hint="@string/command_shutdown_sec"
+            android:inputType="number"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/et_min"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btn_shutdown"
+            android:text="@string/command_shutdown_shutdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:id="@+id/btn_restart"
+            android:text="@string/command_shutdown_restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:text="@string/command_shutdown_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

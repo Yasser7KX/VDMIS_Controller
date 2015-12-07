@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_input"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="@string/drawer_input" />
+        <item android:id="@+id/nav_shutdown"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="@string/drawer_shutdown" />
+        <item android:id="@+id/nav_schedule"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/drawer_schedule" />
+        <item android:id="@+id/nav_chat"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/drawer_chat" />
+    </group>
+
+</menu>
