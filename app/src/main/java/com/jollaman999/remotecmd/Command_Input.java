@@ -14,7 +14,7 @@ public class Command_Input extends Fragment {
     ViewGroup root;
 
     EditText et_input;
-    Button btn_send;
+    static Button btn_send;
     static EditText et_result;
 
     @Override

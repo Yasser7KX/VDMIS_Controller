@@ -248,12 +248,14 @@ public class Socket_Control {
                             time_sec = 0;
                             Timer mTimer = new Timer();
                             mTimer.schedule(new ConnectingTimerThread(), 0, 1000);
+                            Command_Input.btn_send.setEnabled(false);
                         }
                     });
                     output = data_in.readUTF();
 
                 } catch (IOException e) {
-                    if (socket != null) {
+                    if (socket != null &&
+                            time_sec != SOCKET_TIME_OUT_MS / 1000) {
                         e.printStackTrace();
                         output = RemoteCMD.context.getString(R.string.err_msg_io_err);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -274,6 +276,7 @@ public class Socket_Control {
                             output = RemoteCMD.context.getString(R.string.command_input_success);
                         }
                         Command_Input.et_result.setText(output);
+                        Command_Input.btn_send.setEnabled(true);
                     }
                 });
             }
