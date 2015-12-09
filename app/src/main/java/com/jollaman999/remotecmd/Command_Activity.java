@@ -87,7 +87,8 @@ public class Command_Activity extends AppCompatActivity {
                     ft.commit();
                     break;
                 case R.id.nav_schedule:
-
+                    mNavigationView.setCheckedItem(R.id.nav_schedule);
+                    // TODO
                     break;
                 case R.id.nav_chat:
                     mNavigationView.setCheckedItem(R.id.nav_chat);
