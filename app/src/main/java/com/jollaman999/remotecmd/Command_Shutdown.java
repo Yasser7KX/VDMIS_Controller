@@ -103,7 +103,6 @@ public class Command_Shutdown extends Fragment implements View.OnClickListener{
             public void onClick(View v) {
                 int total = 0;
                 char param = 'r';
-                String time_set = " ";
 
                 switch (v.getId()) {
                     case R.id.btn_shutdown:
@@ -122,19 +121,15 @@ public class Command_Shutdown extends Fragment implements View.OnClickListener{
                     total = getTime();
 
                     if (selected_os.equals("Windows")) {
-                        time_set += total;
-                        Socket_Control.input = "shutdown -" + param + " -t" + time_set;
+                        Socket_Control.input = "shutdown -" + param + " -t " + total;
                     } else {
-                        time_set += total / 60;
-                        Socket_Control.input = "sudo shutdown -" + param + time_set;
+                        Socket_Control.input = "sudo shutdown -" + param + " +" + (total / 60);
                     }
                 } else {
                     if (selected_os.equals("Windows")) {
-                        time_set += 0;
-                        Socket_Control.input = "shutdown -" + param + " -t" + time_set;
+                        Socket_Control.input = "shutdown -" + param + " -t " + 0;
                     } else {
-                        time_set += "now";
-                        Socket_Control.input = "sudo shutdown -" + param + time_set;
+                        Socket_Control.input = "sudo shutdown -" + param + " now";
                     }
                 }
 
