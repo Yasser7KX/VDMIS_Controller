@@ -1,5 +1,8 @@
 package com.jollaman999.remotecmd;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
@@ -43,6 +46,10 @@ public class Socket_Control {
 
     // Use for setSocket
     private static String addr;
+
+    private static NotificationManager mNotificationManager;
+    private static Notification.Builder mNotificationBuilder;
+    private static int notifyID = 0;
 
     private static class ConnectingTimerThread extends TimerTask {
 
@@ -208,6 +215,13 @@ public class Socket_Control {
                         intent.setClass(RemoteCMD.context, Command_Activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         RemoteCMD.context.startActivity(intent);
+
+                        mNotificationManager = (NotificationManager) RemoteCMD.context.getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotificationBuilder = new Notification.Builder(RemoteCMD.context);
+                        mNotificationBuilder.setSmallIcon(R.mipmap.ic_launcher)
+                                .setWhen(System.currentTimeMillis())
+                                .setAutoCancel(false);
+
                         init = false;
                     } else if (input.equals("DISCONNECTED")) {
                         HandleErr(RemoteCMD.context.getString(R.string.main_disconnected));
@@ -352,6 +366,100 @@ public class Socket_Control {
                                 Toast.makeText(RemoteCMD.context,
                                         output,
                                         Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
+        }.start();
+    }
+
+    private static void Notify(String cmd, String output, int flag) {
+        switch (flag) {
+            case 1:
+                mNotificationBuilder.setTicker(RemoteCMD.context.getString(R.string.command_input_success) + ": " + cmd)
+                        .setContentTitle(RemoteCMD.context.getString(R.string.command_input_success))
+                        .setStyle(new Notification.BigTextStyle().bigText(cmd + System.getProperty("line.separator") + output));
+                break;
+            case 2:
+                mNotificationBuilder.setTicker(RemoteCMD.context.getString(R.string.err_msg_timed_out) + ": " + cmd)
+                        .setContentTitle(RemoteCMD.context.getString(R.string.err_msg_timed_out))
+                        .setContentText(cmd);
+                break;
+            case 3:
+                mNotificationBuilder.setTicker(RemoteCMD.context.getString(R.string.err_msg_io_err) + ": " + cmd)
+                        .setContentTitle(RemoteCMD.context.getString(R.string.err_msg_io_err))
+                        .setContentText(cmd);
+                break;
+        }
+
+        if (notifyID > 100) {
+            notifyID = 0;
+        }
+        mNotificationManager.notify(notifyID++, mNotificationBuilder.build());
+    }
+
+    public static void SendScheduledCommand(String command) {
+        final String cmd = command;
+
+        // Network thread should not run on main thread.
+        // So make a new thread here.
+        new Thread() {
+            @Override
+            public void run() {
+                command_success = false;
+                try {
+                    data_out.writeUTF(cmd);
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            time_sec = 0;
+                            Timer mTimer = new Timer();
+                            TimerTask mTimerTask = new TimerTask() {
+                                @Override
+                                public void run() {
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (command_success) {
+                                                cancel();
+                                                return;
+                                            } else if (time_sec == SOCKET_TIME_OUT_MS / 1000) {
+                                                cancel();
+                                                Notify(cmd, null, 2);
+                                                return;
+                                            }
+
+                                            time_sec++;
+                                        }
+                                    });
+                                }
+                            };
+
+                            mTimer.schedule(mTimerTask, 0, 1000);
+                        }
+                    });
+                    output = data_in.readUTF();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Notify(cmd, null, 3);
+                    return;
+                }
+
+                command_success = true;
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (output.equals("")) {
+                            output = RemoteCMD.context.getString(R.string.command_input_success);
+                        }
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Notify(cmd, output, 1);
                             }
                         });
                     }

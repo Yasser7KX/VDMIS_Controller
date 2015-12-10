@@ -48,4 +48,10 @@
     <string name="chatting_main_disconnected">Disconnected</string>
     <string name="command_io_error">I/O error. Please go back to main.</string>
     <string name="chatting_login_hint">Input chat name.</string>
+    <string name="schedule_main_no_command">Input command!</string>
+    <string name="schedule_main_delete_title">Delete</string>
+    <string name="schedule_main_delete_message">Delete this command?</string>
+    <string name="schedule_main_delete_yes">Yes</string>
+    <string name="schedule_main_delete_no">No</string>
+    <string name="schedule_main_reset">Reset</string>
 </resources>

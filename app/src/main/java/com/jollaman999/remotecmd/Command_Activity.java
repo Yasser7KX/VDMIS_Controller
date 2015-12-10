@@ -88,7 +88,8 @@ public class Command_Activity extends AppCompatActivity {
                     break;
                 case R.id.nav_schedule:
                     mNavigationView.setCheckedItem(R.id.nav_schedule);
-                    // TODO
+                    ft.replace(R.id.fragment_layout, Fragment.instantiate(getApplicationContext(), "com.jollaman999.remotecmd.Schedule_Main"));
+                    ft.commit();
                     break;
                 case R.id.nav_chat:
                     mNavigationView.setCheckedItem(R.id.nav_chat);
