@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @SuppressWarnings("unused")
 public class Schedule_Main extends Fragment {
@@ -117,7 +118,8 @@ public class Schedule_Main extends Fragment {
 
                 is_schedule_canceled = false;
 
-                mArrayAdapter.add(getTime() + "+" + min + ":" + sec + " " + et_schedule_command.getText().toString());
+                final String text = getTime() + "+" + min + ":" + sec + " " + et_schedule_command.getText().toString();
+                mArrayAdapter.add(text);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -125,6 +127,7 @@ public class Schedule_Main extends Fragment {
                             return;
                         }
                         Socket_Control.SendScheduledCommand(et_schedule_command.getText().toString());
+                        mArrayAdapter.remove(text);
                     }
                 }, min * 60 * 1000 + sec * 1000);
             }
@@ -133,8 +136,8 @@ public class Schedule_Main extends Fragment {
         return root;
     }
 
-    static String getTime() {
-        SimpleDateFormat f = new SimpleDateFormat("[hh:mm:ss]");
+    String getTime() {
+        SimpleDateFormat f = new SimpleDateFormat("[hh:mm:ss]", Locale.getDefault());
         return f.format(new Date());
     }
 }
