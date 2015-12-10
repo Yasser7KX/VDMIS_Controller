@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -57,6 +58,8 @@ public class Command_Activity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         closeSocket();
+        // Should clear schedule items when destroy command activity.
+        Schedule_Main.mArrayAdapter.clear();
         super.onDestroy();
     }
 

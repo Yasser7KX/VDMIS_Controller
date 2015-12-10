@@ -28,7 +28,6 @@ public class Schedule_Main extends Fragment {
     TextView tv_start_time;
 
     ListView lv_command_list;
-    ArrayAdapter<String> mArrayAdapter;
 
     Button btn_schedule_reset;
 
@@ -39,10 +38,17 @@ public class Schedule_Main extends Fragment {
 
     static boolean is_schedule_canceled;
 
+    static ArrayAdapter<String> mArrayAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         root = (ViewGroup) inflater.inflate(R.layout.schedule__main, null);
+
+        // Should keep schedule items when fragment changed.
+        if (mArrayAdapter == null) {
+            mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
+        }
 
         lv_command_list = (ListView) root.findViewById(R.id.lv_command_list);
         btn_schedule_reset = (Button) root.findViewById(R.id.btn_schedule_reset);
@@ -51,7 +57,6 @@ public class Schedule_Main extends Fragment {
         et_schedule_sec = (EditText) root.findViewById(R.id.et_schedule_sec);
         btn_schedule_add = (Button) root.findViewById(R.id.btn_schedule_add);
 
-        mArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
         lv_command_list.setAdapter(mArrayAdapter);
         lv_command_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
