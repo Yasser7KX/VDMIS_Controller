@@ -18,8 +18,10 @@ import java.net.Socket;
 public class Command_Activity extends AppCompatActivity {
 
     private DrawerLayout drawer;
-    private ActionBarDrawerToggle mDrawerToggle;
+    ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
+
+    Toolbar mtoolbar;
 
     static Socket socket;
 
@@ -32,14 +34,13 @@ public class Command_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Command - Input");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        mtoolbar = (Toolbar) findViewById(R.id.toolbar);
+        mtoolbar.setTitle("Command - Input");
+        setSupportActionBar(mtoolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar,
+                this, drawer, mtoolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
@@ -70,6 +71,8 @@ public class Command_Activity extends AppCompatActivity {
 
     private class NavViewItemListener implements NavigationView.OnNavigationItemSelectedListener {
 
+        String title;
+
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             int id = item.getItemId();
@@ -80,24 +83,31 @@ public class Command_Activity extends AppCompatActivity {
                     mNavigationView.setCheckedItem(R.id.nav_input);
                     ft.replace(R.id.fragment_layout, Fragment.instantiate(getApplicationContext(), "com.jollaman999.remotecmd.Command_Input"));
                     ft.commit();
+                    title = "Command - Input";
                     break;
                 case R.id.nav_shutdown:
                     mNavigationView.setCheckedItem(R.id.nav_shutdown);
                     ft.replace(R.id.fragment_layout, Fragment.instantiate(getApplicationContext(), "com.jollaman999.remotecmd.Command_Shutdown"));
                     ft.commit();
+                    title = "Command - Shutdown";
                     break;
                 case R.id.nav_schedule:
                     mNavigationView.setCheckedItem(R.id.nav_schedule);
                     ft.replace(R.id.fragment_layout, Fragment.instantiate(getApplicationContext(), "com.jollaman999.remotecmd.Schedule_Main"));
                     ft.commit();
+                    title = "Command - Schedule";
                     break;
                 case R.id.nav_chat:
                     mNavigationView.setCheckedItem(R.id.nav_chat);
                     ft.replace(R.id.fragment_layout, Fragment.instantiate(getApplicationContext(), "com.jollaman999.remotecmd.Chatting_Login"));
                     ft.commit();
+                    title = "Command - Chatting";
                     break;
             }
+
             drawer.closeDrawer(GravityCompat.START);
+            mtoolbar.setTitle(title);
+
             return true;
         }
     }
