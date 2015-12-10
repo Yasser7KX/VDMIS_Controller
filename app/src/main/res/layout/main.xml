@@ -39,6 +39,7 @@
                 android:id="@+id/et_main_address"
                 android:textAlignment="center"
                 android:hint="@string/main_address_hint"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -46,6 +47,7 @@
                 android:id="@+id/et_main_password"
                 android:textAlignment="center"
                 android:hint="@string/main_password_hint"
+                android:singleLine="true"
                 android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"

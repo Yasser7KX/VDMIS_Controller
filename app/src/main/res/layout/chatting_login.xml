@@ -8,6 +8,7 @@
 
     <EditText
         android:id="@+id/et_chat_login_name"
+        android:singleLine="true"
         android:hint="@string/chatting_login_hint"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

@@ -138,7 +138,7 @@ public class Command_Shutdown extends Fragment implements View.OnClickListener{
                         Toast.LENGTH_SHORT).show();
                 Socket_Control.SendShutdownCommand();
             }
-        };
+        }
 
         shutdown_onClick_listener sol = new shutdown_onClick_listener();
         btn_shutdown.setOnClickListener(sol);

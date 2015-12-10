@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Chatting_Main extends AppCompatActivity {
 
@@ -145,40 +147,55 @@ public class Chatting_Main extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            et_chat_send.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                        SendMessage();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
             btn_chat_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (et_chat_send.getText() == null ||
-                            et_chat_send.getText().toString().equals("")) {
-                        return;
-                    }
+                    SendMessage();
+                }
+            });
+        }
 
-                    message = et_chat_send.getText().toString();
-                    try {
-                        output.writeUTF(getTime() + "[" + name + "]" + message);
-                    } catch (IOException e) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                et_chat_show.append(getString(R.string.err_msg_io_err));
-                            }
-                        });
-                        e.printStackTrace();
-                    }
+        void SendMessage() {
+            if (et_chat_send.getText() == null ||
+                    et_chat_send.getText().toString().equals("")) {
+                return;
+            }
 
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            et_chat_send.setText("");
-                        }
-                    });
+            message = et_chat_send.getText().toString();
+            try {
+                output.writeUTF(getTime() + "[" + name + "]" + message);
+            } catch (IOException e) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        et_chat_show.append(getString(R.string.err_msg_io_err));
+                    }
+                });
+                e.printStackTrace();
+            }
+
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    et_chat_send.setText("");
                 }
             });
         }
     }
 
-    static String getTime() {
-        SimpleDateFormat f = new SimpleDateFormat("[hh:mm:ss]");
+    String getTime() {
+        SimpleDateFormat f = new SimpleDateFormat("[hh:mm:ss]", Locale.getDefault());
         return f.format(new Date());
     }
 }
