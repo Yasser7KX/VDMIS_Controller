@@ -130,6 +130,10 @@ public class Schedule_Main extends Fragment {
                         mArrayAdapter.remove(text);
                     }
                 }, min * 60 * 1000 + sec * 1000);
+
+                et_schedule_command.setText("");
+                et_schedule_min.setText("");
+                et_schedule_sec.setText("");
             }
         });
 
