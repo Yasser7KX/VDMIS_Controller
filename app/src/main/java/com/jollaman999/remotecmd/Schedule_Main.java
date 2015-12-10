@@ -119,6 +119,7 @@ public class Schedule_Main extends Fragment {
                 is_schedule_canceled = false;
 
                 final String text = getTime() + "+" + min + ":" + sec + " " + et_schedule_command.getText().toString();
+                final String command = et_schedule_command.getText().toString();
                 mArrayAdapter.add(text);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -126,7 +127,7 @@ public class Schedule_Main extends Fragment {
                         if (is_schedule_canceled) {
                             return;
                         }
-                        Socket_Control.SendScheduledCommand(et_schedule_command.getText().toString());
+                        Socket_Control.SendScheduledCommand(command);
                         mArrayAdapter.remove(text);
                     }
                 }, min * 60 * 1000 + sec * 1000);
