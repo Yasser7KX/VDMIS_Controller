@@ -116,7 +116,9 @@ public class Command_Activity extends AppCompatActivity {
 
     private static void closeSocket() {
         try {
-            socket.close();
+            if (socket != null) {
+                socket.close();
+            }
             Socket_Control.is_connected = false;
         } catch (IOException e) {
             e.printStackTrace();

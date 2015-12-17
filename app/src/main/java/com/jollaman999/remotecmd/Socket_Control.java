@@ -184,7 +184,9 @@ public class Socket_Control {
 
     static void closeSocket() {
         try {
-            socket.close();
+            if (socket != null) {
+                socket.close();
+            }
             is_connected = false;
         } catch (IOException e) {
             e.printStackTrace();
