@@ -220,7 +220,7 @@ public class Socket_Control {
                         mNotificationBuilder = new Notification.Builder(RemoteCMD.context);
                         mNotificationBuilder.setSmallIcon(R.mipmap.ic_launcher)
                                 .setWhen(System.currentTimeMillis())
-                                .setAutoCancel(false);
+                                .setAutoCancel(true);
 
                         init = false;
                     } else if (input.equals("DISCONNECTED")) {
@@ -376,6 +376,11 @@ public class Socket_Control {
 
     private static void Notify(String cmd, String output, int flag) {
         switch (flag) {
+            case 0:
+                mNotificationBuilder.setTicker(RemoteCMD.context.getString(R.string.command_input_failed))
+                        .setContentTitle(RemoteCMD.context.getString(R.string.command_input_failed))
+                        .setStyle(new Notification.BigTextStyle().bigText(cmd + System.getProperty("line.separator") + output));
+                break;
             case 1:
                 mNotificationBuilder.setTicker(RemoteCMD.context.getString(R.string.command_input_success) + ": " + cmd)
                         .setContentTitle(RemoteCMD.context.getString(R.string.command_input_success))
@@ -454,14 +459,11 @@ public class Socket_Control {
                     public void run() {
                         if (output.equals("")) {
                             output = RemoteCMD.context.getString(R.string.command_input_success);
+                        } else if (output.contains("Error")) {
+                            Notify(cmd, output, 0);
+                            return;
                         }
-
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Notify(cmd, output, 1);
-                            }
-                        });
+                        Notify(cmd, output, 1);
                     }
                 });
             }
