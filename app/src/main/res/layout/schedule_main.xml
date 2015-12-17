@@ -27,6 +27,7 @@
         <EditText
             android:id="@+id/et_schedule_command"
             android:hint="command"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"/>
@@ -34,6 +35,8 @@
         <EditText
             android:id="@+id/et_schedule_min"
             android:hint="min"
+            android:singleLine="true"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"/>
@@ -41,6 +44,8 @@
         <EditText
             android:id="@+id/et_schedule_sec"
             android:hint="sec"
+            android:singleLine="true"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"/>

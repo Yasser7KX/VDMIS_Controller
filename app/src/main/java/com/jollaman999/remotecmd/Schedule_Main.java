@@ -43,7 +43,7 @@ public class Schedule_Main extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-        root = (ViewGroup) inflater.inflate(R.layout.schedule__main, null);
+        root = (ViewGroup) inflater.inflate(R.layout.schedule_main, null);
 
         // Should keep schedule items when fragment changed.
         if (mArrayAdapter == null) {

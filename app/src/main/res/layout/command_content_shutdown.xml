@@ -44,6 +44,7 @@
         <EditText
             android:id="@+id/et_hour"
             android:hint="@string/command_shutdown_hour"
+            android:singleLine="true"
             android:inputType="number"
             android:layout_width="60dp"
             android:layout_height="wrap_content"/>
@@ -51,6 +52,7 @@
         <EditText
             android:id="@+id/et_min"
             android:hint="@string/command_shutdown_min"
+            android:singleLine="true"
             android:inputType="number"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
@@ -60,6 +62,7 @@
         <EditText
             android:id="@+id/et_sec"
             android:hint="@string/command_shutdown_sec"
+            android:singleLine="true"
             android:inputType="number"
             android:layout_width="60dp"
             android:layout_height="wrap_content"/>
