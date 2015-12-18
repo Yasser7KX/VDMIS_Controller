@@ -58,7 +58,9 @@ public class Command_Activity extends AppCompatActivity {
     public void onDestroy() {
         closeSocket();
         // Should clear schedule items when destroy command activity.
-        Schedule_Main.mArrayAdapter.clear();
+        if (Schedule_Main.mArrayAdapter != null) {
+            Schedule_Main.mArrayAdapter.clear();
+        }
         super.onDestroy();
     }
 
@@ -115,14 +117,7 @@ public class Command_Activity extends AppCompatActivity {
     }
 
     private static void closeSocket() {
-        try {
-            if (socket != null) {
-                socket.close();
-            }
-            Socket_Control.is_connected = false;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Socket_Control.closeSocket();
         Socket_Control.ResetMain();
 
         Toast.makeText(RemoteCMD.context,
